@@ -24,7 +24,6 @@ body {
     font-family: 'San Francisco', -apple-system, BlinkMacSystemFont, Roboto, Arial, sans-serif;
     background: url('https://cdn.pixabay.com/photo/2018/09/02/05/35/sky-3647084_1280.jpg') no-repeat center center fixed;
     background-size: cover;
-    background-blur: 10px; /* Blur effect for background */
     color: var(--text-color);
     display: flex;
     justify-content: center;
@@ -35,15 +34,15 @@ body {
 
 /* Container for content */
 .container {
-    background: rgba(255, 255, 255, 0.95); /* Slightly transparent white with more opacity */
+    background: rgba(255, 255, 255, 0.95); /* Slightly transparent white */
     border-radius: var(--border-radius);
     box-shadow: var(--box-shadow);
     padding: 30px;
     max-width: 600px;
     width: 100%;
     text-align: center;
-    position: relative; /* For positioning of children */
-    overflow: hidden; /* Hide overflow for smooth animations */
+    position: relative;
+    overflow: hidden;
 }
 
 /* Container overlay effect */
@@ -63,7 +62,7 @@ body {
     opacity: 0.4;
 }
 
-/* Headings */
+/* Centered Heading */
 h1 {
     color: var(--primary-color);
     margin-bottom: 20px;
@@ -73,11 +72,7 @@ h1 {
     transition: color var(--transition-speed);
 }
 
-h1:hover {
-    color: var(--accent-color);
-}
-
-/* Buttons */
+/* Button Styles */
 .btn {
     background-color: var(--primary-color);
     color: white;
@@ -122,11 +117,11 @@ h1:hover {
     z-index: 1;
 }
 
-/* Input and select fields */
+/* Input and Select Fields */
 input, select {
-    width: 100%;
+    width: calc(100% - 24px);
     padding: 12px;
-    margin: 10px 0;
+    margin: 10px auto;
     border: 1px solid #ddd;
     border-radius: var(--border-radius);
     font-size: 16px;
@@ -139,7 +134,7 @@ input:focus, select:focus {
     box-shadow: 0 0 5px rgba(0, 122, 255, 0.5);
 }
 
-/* Feedback messages */
+/* Feedback Messages */
 .feedback {
     padding: 15px;
     margin-top: 15px;
@@ -165,11 +160,11 @@ input:focus, select:focus {
 
 /* Progress Bar */
 .progress-bar {
-    width: 100%;
+    width: calc(100% - 24px);
     background-color: rgba(0, 0, 0, 0.1);
     border-radius: var(--border-radius);
     margin-top: 20px;
-    overflow: hidden; /* Hide overflow for smooth animation */
+    overflow: hidden;
 }
 
 .progress {
@@ -185,7 +180,7 @@ input:focus, select:focus {
     color: var(--primary-color);
     margin-top: 15px;
     font-weight: 600;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Shadow for text */
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 /* Score, Time, Streak */
@@ -205,6 +200,7 @@ input:focus, select:focus {
 @media (max-width: 768px) {
     .container {
         padding: 20px;
+        max-width: 90%; /* Responsive width */
     }
 
     h1 {
