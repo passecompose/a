@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>French Learning Game</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <div class="container">
+        <h1>French Learning Game</h1>
+        <div id="question"></div>
+        <input type="text" id="answer" placeholder="Enter your answer here" style="display:none;">
+        <button id="startBtn" class="btn">Start Game</button>
+        <button id="submitBtn" class="btn" style="display:none;">Submit Answer</button>
+        <button id="hintBtn" class="btn" style="display:none;">Show Hint</button>
+        <div id="feedback" class="feedback"></div>
+        <div id="score">Score: 0/0</div>
+        <div id="time">Time: 0:00</div>
+        <div id="streak">Streak: 0</div>
+        <div class="progress-bar">
+            <div id="progress" class="progress"></div>
+        </div>
+        <div id="level-indicator" style="display:none;"></div>
+        <div class="navigation">
+            <a href="index.html" class="btn">Go to Homepage</a>
+        </div>
+        <select id="difficulty" style="display:none;">
+            <option value="easy">Easy</option>
+            <option value="medium">Medium</option>
+            <option value="hard">Hard</option>
+        </select>
+    </div>
+    <script src="game.js"></script>
+</body>
+</html>
