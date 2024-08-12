@@ -1,15 +1,15 @@
-// Define 10 questions and correct answers
+// Define 10 French questions and correct answers
 const questions = [
-    { question: "What is 2 + 2?", answer: "4" },
-    { question: "What is the capital of France?", answer: "Paris" },
-    { question: "What is 5 + 7?", answer: "12" },
-    { question: "What is the chemical symbol for water?", answer: "H2O" },
-    { question: "Who wrote 'To Kill a Mockingbird'?", answer: "Harper Lee" },
-    { question: "What planet is known as the Red Planet?", answer: "Mars" },
-    { question: "What is the largest mammal?", answer: "Blue Whale" },
-    { question: "What is the hardest natural substance on Earth?", answer: "Diamond" },
-    { question: "What is the boiling point of water in degrees Celsius?", answer: "100" },
-    { question: "Who painted the Mona Lisa?", answer: "Leonardo da Vinci" }
+    { question: "Comment dit-on 'Hello' en français ?", answer: "Bonjour" },
+    { question: "Quel est le mot pour 'apple' en français ?", answer: "Pomme" },
+    { question: "Comment se dit 'dog' en français ?", answer: "Chien" },
+    { question: "Quelle est la traduction de 'book' en français ?", answer: "Livre" },
+    { question: "Comment dit-on 'Goodbye' en français ?", answer: "Au revoir" },
+    { question: "Quel est le mot pour 'house' en français ?", answer: "Maison" },
+    { question: "Comment se dit 'car' en français ?", answer: "Voiture" },
+    { question: "Quelle est la traduction de 'friend' en français ?", answer: "Ami" },
+    { question: "Comment dit-on 'Thank you' en français ?", answer: "Merci" },
+    { question: "Quel est le mot pour 'school' en français ?", answer: "École" }
 ];
 
 let currentQuestionIndex = 0; // Track the current question
@@ -65,18 +65,13 @@ document.getElementById('submitAnswer').addEventListener('click', () => {
 
     // Move to the next question or finish quiz
     currentQuestionIndex++;
-    if (currentQuestionIndex < questions.length) {
-        if (currentQuestionIndex % questions.length === 0) {
-            // All users have finished; show results
-            displayResults();
-        } else {
-            // Move to next user's turn
-            currentUserIndex = (currentUserIndex + 1) % users.length;
-            loadQuestion();
-        }
-    } else {
+    if (currentQuestionIndex >= questions.length) {
         // All questions answered; show results
         displayResults();
+    } else {
+        // Move to the next user's turn
+        currentUserIndex = (currentUserIndex + 1) % users.length;
+        loadQuestion();
     }
 });
 
