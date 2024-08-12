@@ -1,3 +1,4 @@
+// Array of verbs with their attributes
 const verbs = [
     { inf: "aller", part: "allé", aux: "être", diff: "easy", eng: "to go" },
     { inf: "avoir", part: "eu", aux: "avoir", diff: "easy", eng: "to have" },
@@ -16,12 +17,19 @@ const verbs = [
     { inf: "naître", part: "né", aux: "être", diff: "hard", eng: "to be born" }
 ];
 
+// List of subjects for conjugation
 const subjects = ["Je", "Tu", "Il/Elle", "Nous", "Vous", "Ils/Elles"];
+
+// Initialize game variables
 let currentVerb, currentSubject, score, questionCount, startTime, gameInterval, streak = 0, level = 1;
 
+// Utility function to get element by ID
 const $ = id => document.getElementById(id);
+
+// Utility function to get a random element from an array
 const random = arr => arr[Math.floor(Math.random() * arr.length)];
 
+// Start the game
 function startGame() {
     score = 0;
     questionCount = 0;
@@ -36,6 +44,7 @@ function startGame() {
     $('answer').style.display = 'block';
 }
 
+// Generate the next question
 function nextQuestion() {
     if (questionCount >= 20) return endGame();
     questionCount++;
@@ -49,6 +58,7 @@ function nextQuestion() {
     updateProgress();
 }
 
+// Check the user's answer
 function checkAnswer() {
     const userAnswer = $('answer').value.trim().toLowerCase();
     const correctAnswer = `${currentSubject.toLowerCase()} ${getAuxiliary()} ${getParticiple()}`.toLowerCase();
@@ -66,6 +76,7 @@ function checkAnswer() {
     setTimeout(nextQuestion, 2000);
 }
 
+// Get the correct auxiliary verb for the current question
 function getAuxiliary() {
     const auxConj = {
         être: ["suis", "es", "est", "sommes", "êtes", "sont"],
@@ -74,6 +85,7 @@ function getAuxiliary() {
     return auxConj[currentVerb.aux][subjects.indexOf(currentSubject)];
 }
 
+// Get the correct past participle form
 function getParticiple() {
     let part = currentVerb.part;
     if (currentVerb.aux === "être") {
@@ -83,29 +95,23 @@ function getParticiple() {
     return part;
 }
 
-function showHint() {
-    $('feedback').textContent = `Hint: This verb uses "${currentVerb.aux}" as its auxiliary. The past participle is "${currentVerb.part}".`;
-    $('feedback').className = 'feedback hint';
-}
-
+// Update the score display
 function updateScore() {
     $('score').textContent = `Score: ${score}/${questionCount}`;
 }
 
-function updateTime() {
-    const elapsed = Math.floor((Date.now() - startTime) / 1000);
-    $('time').textContent = `Time: ${Math.floor(elapsed / 60)}:${(elapsed % 60).toString().padStart(2, '0')}`;
-}
-
+// Update the streak display
 function updateStreak() {
     $('streak').textContent = `Streak: ${streak}`;
 }
 
+// Update the progress bar
 function updateProgress() {
     const progress = (questionCount / 20) * 100;
     $('progress').style.width = `${progress}%`;
 }
 
+// Handle the game level up
 function levelUp() {
     level++;
     $('level-indicator').textContent = `Level Up! Now at Level ${level}`;
@@ -113,6 +119,7 @@ function levelUp() {
     setTimeout(() => $('level-indicator').style.display = 'none', 2000);
 }
 
+// End the game and show the final score
 function endGame() {
     clearInterval(gameInterval);
     $('question').innerHTML = `<strong>Game Over!</strong><br>Your final score is ${score}/20.`;
@@ -120,8 +127,23 @@ function endGame() {
     $('hintBtn').style.display = 'none';
 }
 
+// Update the timer every second
+function updateTime() {
+    const elapsedTime = Math.floor((Date.now() - startTime) / 1000);
+    const minutes = Math.floor(elapsedTime / 60);
+    const seconds = elapsedTime % 60;
+    $('time').textContent = `Time: ${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+}
+
+// Add event listeners to buttons when the DOM is fully loaded
 document.addEventListener('DOMContentLoaded', () => {
     $('startBtn').addEventListener('click', startGame);
     $('submitBtn').addEventListener('click', checkAnswer);
     $('hintBtn').addEventListener('click', showHint);
 });
+
+// Display a hint
+function showHint() {
+    $('feedback').textContent = `Hint: The verb "${currentVerb.inf}" means "${currentVerb.eng}" in English.`;
+    $('feedback').className = 'feedback hint';
+}
