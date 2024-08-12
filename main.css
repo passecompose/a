@@ -26,14 +26,14 @@ body {
     border-radius: 15px;
     box-shadow: 0 10px 20px rgba(0,0,0,0.1);
     padding: 30px;
-    max-width: 500px;
+    max-width: 600px;
     width: 100%;
+    text-align: center;
 }
 
 /* Heading styling */
 h1 {
     color: var(--primary);
-    text-align: center;
     margin-bottom: 20px;
 }
 
@@ -81,12 +81,10 @@ input, select {
 #question {
     font-size: 18px;
     margin-bottom: 15px;
-    text-align: center;
 }
 
 /* Score, time, and streak text styling */
 #score, #time, #streak {
-    text-align: center;
     margin-top: 15px;
     font-size: 18px;
 }
@@ -127,7 +125,6 @@ input, select {
 }
 
 #level-indicator {
-    text-align: center;
     font-size: 20px;
     margin-top: 15px;
     color: var(--primary);
