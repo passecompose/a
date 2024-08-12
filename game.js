@@ -1,5 +1,19 @@
 const verbs = [
-    // Same verbs array as before
+    { inf: "aller", part: "allé", aux: "être", diff: "easy", eng: "to go" },
+    { inf: "avoir", part: "eu", aux: "avoir", diff: "easy", eng: "to have" },
+    { inf: "être", part: "été", aux: "avoir", diff: "easy", eng: "to be" },
+    { inf: "faire", part: "fait", aux: "avoir", diff: "easy", eng: "to do/make" },
+    { inf: "venir", part: "venu", aux: "être", diff: "easy", eng: "to come" },
+    { inf: "voir", part: "vu", aux: "avoir", diff: "medium", eng: "to see" },
+    { inf: "prendre", part: "pris", aux: "avoir", diff: "medium", eng: "to take" },
+    { inf: "pouvoir", part: "pu", aux: "avoir", diff: "medium", eng: "to be able to" },
+    { inf: "savoir", part: "su", aux: "avoir", diff: "medium", eng: "to know (a fact)" },
+    { inf: "vouloir", part: "voulu", aux: "avoir", diff: "medium", eng: "to want" },
+    { inf: "devoir", part: "dû", aux: "avoir", diff: "hard", eng: "to have to/must" },
+    { inf: "falloir", part: "fallu", aux: "avoir", diff: "hard", eng: "to be necessary" },
+    { inf: "pleuvoir", part: "plu", aux: "avoir", diff: "hard", eng: "to rain" },
+    { inf: "mourir", part: "mort", aux: "être", diff: "hard", eng: "to die" },
+    { inf: "naître", part: "né", aux: "être", diff: "hard", eng: "to be born" }
 ];
 
 const subjects = ["Je", "Tu", "Il/Elle", "Nous", "Vous", "Ils/Elles"];
@@ -101,19 +115,14 @@ function levelUp() {
 
 function endGame() {
     clearInterval(gameInterval);
-    $('completion-message').textContent = 'Congratulations! You have completed the game.';
-    $('completion-score').textContent = `Final Score: ${score}/20`;
-    $('completion-time').textContent = `Time Taken: ${$('time').textContent.split(' ')[1]}`;
-    $('completion-streak').textContent = `Streak: ${streak}`;
-    window.location.href = 'completed.html';
+    $('question').innerHTML = `<strong>Game Over!</strong><br>Your final score is ${score}/20.`;
+    $('submitBtn').style.display = 'none';
+    $('hintBtn').style.display = 'none';
+    window.location.href = 'completed.html'; // Redirect to the completion page
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    const startBtn = $('startBtn');
-    const submitBtn = $('submitBtn');
-    const hintBtn = $('hintBtn');
-
-    startBtn.addEventListener('click', startGame);
-    submitBtn.addEventListener('click', checkAnswer);
-    hintBtn.addEventListener('click', showHint);
+    $('startBtn').addEventListener('click', startGame);
+    $('submitBtn').addEventListener('click', checkAnswer);
+    $('hintBtn').addEventListener('click', showHint);
 });
