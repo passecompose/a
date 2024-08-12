@@ -6,15 +6,21 @@ body {
     margin: 0;
     padding: 0;
     text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
 }
 
 .container {
     max-width: 800px;
-    margin: 0 auto;
+    width: 100%;
+    margin: 20px;
     padding: 20px;
     background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
 }
 
 /* Header */
@@ -27,10 +33,10 @@ h1 {
 /* Buttons */
 button {
     font-size: 1em;
-    padding: 10px 20px;
+    padding: 12px 25px;
     margin: 10px;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
     transition: background-color 0.3s, transform 0.2s;
 }
@@ -64,26 +70,28 @@ button:active {
 .feedback {
     font-size: 1.2em;
     margin-top: 20px;
-    padding: 10px;
-    border-radius: 5px;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    display: inline-block;
 }
 
 .feedback.correct {
     background-color: #d4edda;
     color: #155724;
-    border: 1px solid #c3e6cb;
+    border-color: #c3e6cb;
 }
 
 .feedback.incorrect {
     background-color: #f8d7da;
     color: #721c24;
-    border: 1px solid #f5c6cb;
+    border-color: #f5c6cb;
 }
 
 .feedback.hint {
     background-color: #e2e3e5;
     color: #383d41;
-    border: 1px solid #b9bcc2;
+    border-color: #b9bcc2;
 }
 
 /* Question and Answer */
@@ -94,23 +102,35 @@ button:active {
     border: 1px solid #ddd;
     border-radius: 10px;
     background: #f9f9f9;
+    display: inline-block;
+    text-align: left;
 }
 
 #answer {
-    width: 80%;
+    width: calc(100% - 22px);
     font-size: 1.2em;
-    padding: 10px;
+    padding: 12px;
     border: 1px solid #ddd;
-    border-radius: 5px;
+    border-radius: 8px;
+    box-sizing: border-box;
+    display: inline-block;
 }
 
 /* Progress Bar */
+.progress-bar {
+    margin-top: 20px;
+    padding: 0 5px;
+    background-color: #e0e0e0;
+    border-radius: 10px;
+    display: inline-block;
+    width: calc(100% - 30px);
+}
+
 #progress {
     height: 20px;
     background-color: #007bff;
     width: 0%;
-    border-radius: 10px;
-    margin-top: 20px;
+    border-radius: 8px;
     transition: width 0.3s;
 }
 
@@ -120,7 +140,7 @@ button:active {
     margin: 10px;
     padding: 10px;
     background: #e9ecef;
-    border-radius: 5px;
+    border-radius: 8px;
     display: inline-block;
 }
 
