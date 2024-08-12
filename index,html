@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classroom Quiz</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Classroom Quiz</h1>
+
+        <!-- Start quiz form -->
+        <div id="startForm">
+            <input type="text" id="nameInput" placeholder="Enter your name" />
+            <button id="startQuiz" class="btn">Start Quiz</button>
+        </div>
+
+        <!-- Quiz question and answer form -->
+        <div id="quiz" style="display: none;">
+            <h2 id="question"></h2>
+            <input type="text" id="answerInput" placeholder="Your Answer" />
+            <button id="submitAnswer" class="btn">Submit Answer</button>
+        </div>
+
+        <!-- Results section -->
+        <div id="results" style="display: none;">
+            <h2>Quiz Results</h2>
+            <ul id="resultsList"></ul>
+            <button id="resetQuiz" class="btn">Reset Quiz</button>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
