@@ -22,6 +22,7 @@ const subjects = ["Je", "Tu", "Il/Elle", "Nous", "Vous", "Ils/Elles"];
 
 // Initialize game variables
 let currentVerb, currentSubject, score, questionCount, startTime, gameInterval, streak = 0, level = 1;
+let isEnglishMode = true;
 
 // Utility function to get element by ID
 const $ = id => document.getElementById(id);
@@ -50,7 +51,11 @@ function nextQuestion() {
     questionCount++;
     currentVerb = random(verbs.filter(v => v.diff === $('#difficulty').value));
     currentSubject = random(subjects);
-    $('#question').innerHTML = `<strong>Question ${questionCount}/20:</strong><br>Translate to French (Passé Composé):<br>"${currentSubject} ${currentVerb.eng}"`;
+    if (isEnglishMode) {
+        $('#question').innerHTML = `<strong>Question ${questionCount}/20:</strong><br>Translate to French (Passé Composé):<br>"${currentSubject} ${currentVerb.eng}"`;
+    } else {
+        $('#question').innerHTML = `<strong>Question ${questionCount}/20:</strong><br>Translate to English:<br>"${currentSubject} ${currentVerb.part}"`;
+    }
     $('#answer').value = '';
     $('#feedback').textContent = '';
     $('#feedback').className = 'feedback';
@@ -61,7 +66,12 @@ function nextQuestion() {
 // Check the user's answer
 function checkAnswer() {
     const userAnswer = $('#answer').value.trim().toLowerCase();
-    const correctAnswer = `${currentSubject.toLowerCase()} ${getAuxiliary()} ${getParticiple()}`.toLowerCase();
+    let correctAnswer;
+    if (isEnglishMode) {
+        correctAnswer = `${currentSubject.toLowerCase()} ${getAuxiliary()} ${getParticiple()}`.toLowerCase();
+    } else {
+        correctAnswer = `${currentSubject.toLowerCase()} ${currentVerb.part}`.toLowerCase();
+    }
     const isCorrect = userAnswer === correctAnswer;
     $('#feedback').textContent = isCorrect ? 'Correct! Well done!' : `Not quite. The correct answer is: "${correctAnswer}"`;
     $('#feedback').className = isCorrect ? 'feedback correct' : 'feedback incorrect';
@@ -76,23 +86,14 @@ function checkAnswer() {
     setTimeout(nextQuestion, 2000);
 }
 
-// Get the correct auxiliary verb for the current question
+// Get the correct auxiliary verb for the current verb
 function getAuxiliary() {
-    const auxConj = {
-        être: ["suis", "es", "est", "sommes", "êtes", "sont"],
-        avoir: ["ai", "as", "a", "avons", "avez", "ont"]
-    };
-    return auxConj[currentVerb.aux][subjects.indexOf(currentSubject)];
+    return currentVerb.aux === 'être' ? 'suis' : 'ai';
 }
 
-// Get the correct past participle form
+// Get the correct past participle for the current verb
 function getParticiple() {
-    let part = currentVerb.part;
-    if (currentVerb.aux === "être") {
-        if (["Je", "Tu", "Il/Elle"].includes(currentSubject)) part += "e";
-        if (["Nous", "Vous", "Ils/Elles"].includes(currentSubject)) part += "s";
-    }
-    return part;
+    return currentVerb.part;
 }
 
 // Update the score display
@@ -140,6 +141,17 @@ document.addEventListener('DOMContentLoaded', () => {
     $('#startBtn').addEventListener('click', startGame);
     $('#submitBtn').addEventListener('click', checkAnswer);
     $('#hintBtn').addEventListener('click', showHint);
+    $('#difficulty').addEventListener('change', nextQuestion);
+
+    // Switch between English and French modes
+    $('#englishBtn').addEventListener('click', () => {
+        isEnglishMode = true;
+        nextQuestion();
+    });
+    $('#frenchBtn').addEventListener('click', () => {
+        isEnglishMode = false;
+        nextQuestion();
+    });
 });
 
 // Display a hint
