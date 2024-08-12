@@ -1,150 +1,222 @@
+/* Root variables for theming */
 :root {
-    --primary: #4a69bd;
-    --secondary: #6a89cc;
-    --accent: #f6b93b;
-    --background: #0a0a0a; /* Dark background for space theme */
-    --text: #333; /* Darker text color for better readability */
-    --light-text: #e0e0e0;
-    --container-bg: rgba(255, 255, 255, 0.9); /* Semi-transparent white */
+    --primary-color: #007aff; /* iOS Blue */
+    --secondary-color: #f5f5f5; /* Light Gray */
+    --accent-color: #34c759; /* Green */
+    --background-color: #f0f0f5; /* Very Light Gray */
+    --text-color: #333; /* Dark Gray for Text */
+    --error-color: #ff3b30; /* Red */
+    --hint-color: #ffcc00; /* Yellow */
+    --border-radius: 20px; /* Rounded Corners */
+    --transition-speed: 0.4s; /* Smooth Transition */
+    --box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Shadow */
+    --gradient-bg: linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.5) 100%); /* Gradient Overlay */
+}
+
+/* Universal styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 body {
-    font-family: 'Poppins', sans-serif;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background: radial-gradient(circle, #000, #0a0a0a);
-    color: var(--text);
+    font-family: 'San Francisco', -apple-system, BlinkMacSystemFont, Roboto, Arial, sans-serif;
+    background: url('https://cdn.pixabay.com/photo/2018/09/02/05/35/sky-3647084_1280.jpg') no-repeat center center fixed;
+    background-size: cover;
+    background-blur: 10px; /* Blur effect for background */
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
 }
 
+/* Container for content */
 .container {
-    background-color: var(--container-bg);
-    border-radius: 20px;
-    box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+    background: rgba(255, 255, 255, 0.95); /* Slightly transparent white with more opacity */
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
     padding: 30px;
     max-width: 600px;
     width: 100%;
-    margin: 0 auto;
-    position: relative;
-    z-index: 1; /* Ensure container is above the background */
-    text-align: center; /* Center text inside container */
+    text-align: center;
+    position: relative; /* For positioning of children */
+    overflow: hidden; /* Hide overflow for smooth animations */
 }
 
+/* Container overlay effect */
+.container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--gradient-bg);
+    opacity: 0.2;
+    transition: opacity var(--transition-speed);
+}
+
+.container:hover::before {
+    opacity: 0.4;
+}
+
+/* Headings */
 h1 {
-    color: var(--primary);
+    color: var(--primary-color);
     margin-bottom: 20px;
-    font-size: 2em;
+    font-size: 2.5rem;
+    font-weight: 600;
+    line-height: 1.2;
+    transition: color var(--transition-speed);
 }
 
+h1:hover {
+    color: var(--accent-color);
+}
+
+/* Buttons */
 .btn {
-    background-color: var(--primary);
+    background-color: var(--primary-color);
     color: white;
     border: none;
     padding: 12px 24px;
-    border-radius: 10px;
+    border-radius: var(--border-radius);
     cursor: pointer;
-    transition: background-color 0.3s, transform 0.3s;
-    font-size: 18px;
-    margin: 10px;
-}
-
-.btn:hover {
-    background-color: var(--secondary);
-    transform: scale(1.05);
-}
-
-input, select {
-    width: calc(100% - 24px);
-    padding: 12px;
-    margin: 10px 0;
-    border: 1px solid #ddd;
-    border-radius: 10px;
+    transition: background-color var(--transition-speed), transform var(--transition-speed), box-shadow var(--transition-speed);
     font-size: 16px;
-    box-sizing: border-box;
+    font-weight: 500;
+    position: relative;
+    overflow: hidden;
 }
 
-.feedback {
-    padding: 15px;
-    margin-top: 15px;
-    border-radius: 10px;
-    font-weight: bold;
-    color: var(--text); /* Ensure feedback text is visible */
-}
-
-.correct { background-color: #d4edda; color: #155724; }
-.incorrect { background-color: #f8d7da; color: #721c24; }
-.hint { background-color: #fff3cd; color: #856404; }
-
-#question {
-    font-size: 1.2em;
-    margin-bottom: 15px;
-    color: var(--text); /* Ensure question text is visible */
-}
-
-#score, #time, #streak {
-    margin-top: 15px;
-    font-size: 1.2em;
-    color: var(--text); /* Ensure score, time, and streak texts are visible */
-}
-
-.progress-bar {
-    width: 100%;
-    background-color: #e0e0e0;
-    border-radius: 10px;
-    margin-top: 20px;
-    height: 12px;
-}
-
-.progress {
-    width: 0%;
-    height: 100%;
-    background-color: var(--accent);
-    border-radius: 10px;
-    transition: width 0.5s ease-in-out;
-}
-
-.accent-buttons {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-}
-
-.accent-btn {
-    margin: 0 8px;
-    padding: 8px 16px;
-    background-color: var(--secondary);
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-}
-
-#level-indicator {
-    font-size: 1.5em;
-    margin-top: 20px;
-    color: var(--primary);
-    display: none; /* Initially hidden */
-}
-
-/* Starry background animation */
-@keyframes stars {
-    from { transform: translateX(0); }
-    to { transform: translateX(-100%); }
-}
-
-.stars {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: url('https://www.transparenttextures.com/patterns/stardust.png') repeat;
-    animation: stars 200s linear infinite;
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background: rgba(255, 255, 255, 0.3);
+    transition: width var(--transition-speed), height var(--transition-speed);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
     z-index: 0;
 }
 
-/* Ensure container is above the animated background */
-body > .container {
+.btn:hover::before {
+    width: 0;
+    height: 0;
+}
+
+.btn:hover {
+    background-color: darken(var(--primary-color), 10%);
+    transform: scale(1.05);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+}
+
+.btn span {
     position: relative;
     z-index: 1;
+}
+
+/* Input and select fields */
+input, select {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: var(--border-radius);
+    font-size: 16px;
+    transition: border-color var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+input:focus, select:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 122, 255, 0.5);
+}
+
+/* Feedback messages */
+.feedback {
+    padding: 15px;
+    margin-top: 15px;
+    border-radius: var(--border-radius);
+    font-weight: 500;
+    transition: background-color var(--transition-speed), color var(--transition-speed);
+}
+
+.correct {
+    background-color: rgba(52, 199, 89, 0.1);
+    color: var(--accent-color);
+}
+
+.incorrect {
+    background-color: rgba(255, 59, 48, 0.1);
+    color: var(--error-color);
+}
+
+.hint {
+    background-color: rgba(255, 204, 0, 0.1);
+    color: var(--hint-color);
+}
+
+/* Progress Bar */
+.progress-bar {
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: var(--border-radius);
+    margin-top: 20px;
+    overflow: hidden; /* Hide overflow for smooth animation */
+}
+
+.progress {
+    height: 10px;
+    background-color: var(--accent-color);
+    border-radius: var(--border-radius);
+    transition: width var(--transition-speed);
+}
+
+/* Level Indicator */
+#level-indicator {
+    font-size: 1.25rem;
+    color: var(--primary-color);
+    margin-top: 15px;
+    font-weight: 600;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Shadow for text */
+}
+
+/* Score, Time, Streak */
+#score, #time, #streak {
+    margin-top: 15px;
+    font-size: 1.25rem;
+    font-weight: 500;
+}
+
+/* Hint and Feedback Section */
+#feedback {
+    font-size: 1rem;
+    margin-top: 20px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    .btn {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+
+    input, select {
+        font-size: 14px;
+    }
 }
