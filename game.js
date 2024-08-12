@@ -126,3 +126,4 @@ document.addEventListener('DOMContentLoaded', () => {
     $('submitBtn').addEventListener('click', checkAnswer);
     $('hintBtn').addEventListener('click', showHint);
 });
+//aaa
