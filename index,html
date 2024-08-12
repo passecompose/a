@@ -10,7 +10,7 @@
     <div class="container">
         <h1>Classroom Quiz</h1>
 
-        <!-- Start quiz form -->
+        <!-- Form to start quiz and log in names -->
         <div id="startForm">
             <input type="text" id="nameInput" placeholder="Enter your name" />
             <button id="startQuiz" class="btn">Start Quiz</button>
