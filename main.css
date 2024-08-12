@@ -4,6 +4,8 @@
     --accent: #f6b93b;
     --background: #0a0a0a; /* Dark background for space theme */
     --text: #f5f5f5;
+    --light-text: #e0e0e0;
+    --container-bg: rgba(255, 255, 255, 0.9); /* Semi-transparent white */
 }
 
 body {
@@ -11,38 +13,39 @@ body {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background: linear-gradient(to bottom, #000, #0a0a0a);
+    background: radial-gradient(circle, #000, #0a0a0a);
     color: var(--text);
 }
 
 .container {
-    background-color: white;
-    border-radius: 15px;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    background-color: var(--container-bg);
+    border-radius: 20px;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.3);
     padding: 30px;
-    max-width: 500px;
+    max-width: 600px;
     width: 100%;
-    margin: 20px auto;
+    margin: 0 auto;
     position: relative;
     z-index: 1; /* Ensure container is above the background */
+    text-align: center; /* Center text inside container */
 }
 
 h1 {
     color: var(--primary);
-    text-align: center;
     margin-bottom: 20px;
+    font-size: 2em;
 }
 
 .btn {
     background-color: var(--primary);
     color: white;
     border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
+    padding: 12px 24px;
+    border-radius: 10px;
     cursor: pointer;
     transition: background-color 0.3s, transform 0.3s;
-    font-size: 16px;
-    margin: 5px;
+    font-size: 18px;
+    margin: 10px;
 }
 
 .btn:hover {
@@ -51,18 +54,19 @@ h1 {
 }
 
 input, select {
-    width: 100%;
-    padding: 10px;
+    width: calc(100% - 24px);
+    padding: 12px;
     margin: 10px 0;
     border: 1px solid #ddd;
-    border-radius: 5px;
+    border-radius: 10px;
     font-size: 16px;
+    box-sizing: border-box;
 }
 
 .feedback {
     padding: 15px;
     margin-top: 15px;
-    border-radius: 5px;
+    border-radius: 10px;
     font-weight: bold;
 }
 
@@ -71,53 +75,50 @@ input, select {
 .hint { background-color: #fff3cd; color: #856404; }
 
 #question {
-    font-size: 18px;
+    font-size: 1.2em;
     margin-bottom: 15px;
-    text-align: center;
 }
 
 #score, #time, #streak {
-    text-align: center;
     margin-top: 15px;
-    font-size: 18px;
+    font-size: 1.2em;
 }
 
 .progress-bar {
     width: 100%;
     background-color: #e0e0e0;
-    border-radius: 5px;
+    border-radius: 10px;
     margin-top: 20px;
-    height: 10px;
+    height: 12px;
 }
 
 .progress {
     width: 0%;
     height: 100%;
     background-color: var(--accent);
-    border-radius: 5px;
+    border-radius: 10px;
     transition: width 0.5s ease-in-out;
 }
 
 #accent-buttons {
     display: flex;
     justify-content: center;
-    margin-top: 10px;
+    margin-top: 20px;
 }
 
 .accent-btn {
-    margin: 0 5px;
-    padding: 5px 10px;
+    margin: 0 8px;
+    padding: 8px 16px;
     background-color: var(--secondary);
     color: white;
     border: none;
-    border-radius: 3px;
+    border-radius: 8px;
     cursor: pointer;
 }
 
 #level-indicator {
-    text-align: center;
-    font-size: 20px;
-    margin-top: 15px;
+    font-size: 1.5em;
+    margin-top: 20px;
     color: var(--primary);
     display: none; /* Initially hidden */
 }
@@ -129,12 +130,18 @@ input, select {
 }
 
 .stars {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     background: url('https://www.transparenttextures.com/patterns/stardust.png') repeat;
     animation: stars 200s linear infinite;
     z-index: 0;
+}
+
+/* Ensure container is above the animated background */
+body > .container {
+    position: relative;
+    z-index: 1;
 }
